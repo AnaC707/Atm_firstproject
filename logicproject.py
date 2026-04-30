@@ -99,7 +99,7 @@ class Logic(QMainWindow, Ui_MainWindow):
             if amount <= 0:
                 raise ValueError
         except ValueError:
-            QMessageBox.warning(self, "Error", "Invalid Amount")
+            QMessageBox.warning(self, "Error", "Please enter a valid number")
             return
 
         if self.r_button2.isChecked():
