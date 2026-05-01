@@ -5,7 +5,7 @@ import os
 
 class Accounts:
     """
-    A class that sets the information of one account at a time
+    A class that sets the information of one account at a time.
     """
     def __init__(self, name: str, pin: str, balance: float, acc_type: str)->None:
         """
@@ -22,7 +22,7 @@ class Accounts:
 
     def check_pin(self, pin: str)->bool:
         """
-        A method that checks if the pin is valid.
+        A method that checks if the pin matches the stored one.
         :param pin: pin entered by the user
         :return: True if valid, False if not
         """
@@ -45,7 +45,7 @@ class Accounts:
     def get_balance(self)->float:
         """
         The method returns the balance of the account.
-        :return: accounts current balance
+        :return: account's current balance
         """
         return self.__balance
 
@@ -80,8 +80,8 @@ class ManageAccount:
     """
     def __init__(self)->None:
         """
-        A method that manages the accounts, creates
-        an empty dictionary, and loads the account's data.
+        A method that manages the accounts, creates an empty dictionary,
+        and loads the account's data.
         """
         self.accounts = {}
         self.load_accounts()
@@ -105,8 +105,7 @@ class ManageAccount:
 
     def get_account(self, name: str)->Accounts:
         """
-        The method finds the user in the dictionary
-        and returns their account object.
+        The method finds the user in the dictionary and returns their account object.
         :param name: user's name
         :return: account object
         """
@@ -114,8 +113,8 @@ class ManageAccount:
 
     def load_accounts(self)->None:
         """
-        This method loads information from the csv file. It reads
-        each row in the file and saves it in a dictionary.
+        This method loads information from the csv file. It reads each row
+        in the file and saves it in a dictionary.
         """
         if not os.path.isfile("accounts.csv"):
             return
@@ -132,8 +131,8 @@ class ManageAccount:
 
     def save_accounts(self)->None:
         """
-        This method rewrites the accounts cvs file, storing the
-        updated information when a transaction is made.
+        This method rewrites the accounts csv file, storing the updated
+        information when a transaction is made.
         """
         with open("accounts.csv", "w", newline="") as file:
             writer = csv.writer(file)
@@ -144,7 +143,7 @@ class ManageAccount:
 
     def save_record(self, name: str, acc_type: str, transaction: str, amount: float, balance: float)->None:
         """
-        This method adds and saves the transaction history in record.cvs
+        This method adds and saves the transaction history in record.csv
         :param name: user's name
         :param acc_type: account type, checking or saving
         :param transaction: deposit or withdraw
@@ -161,8 +160,8 @@ class Logic(QMainWindow, Ui_MainWindow):
     """
     def __init__(self)->None:
         """
-        This method creates the main window, loads the user interface, sets
-        the default user to None, and calls the connections function.
+        This method creates the main window, sets the default user
+        to None, and calls the connections function.
         """
         super().__init__()
         self.setupUi(self)
@@ -172,7 +171,7 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def connections(self)->None:
         """
-        The method connects the GUI push buttons to other functions.
+        The method connects the GUI push buttons their respective functions.
         """
         self.push_b1.clicked.connect(self.enter_transaction)
         self.push_b2.clicked.connect(self.change_account)
@@ -180,9 +179,10 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def enter_transaction(self)->None:
         """
-        This method checks if a user is logged in, validates the
-        entered amount, processes the selected transaction, updates
-        balance, saves files, and resets every input and radio buttons.
+        This method checks if a user is logged in, validates the entered amount,
+        processes the selected transaction, updates balance, saves files, and
+        resets every input and radio button. With the suggestion of AI, I implemented
+        a pop-up message/window when an error occurs or the transaction is successful.
         """
         if not self.current_user:
             QMessageBox.warning(self, "Error", "Log in first")
@@ -245,9 +245,9 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def login(self)->None:
         """
-        The method check that the name and pin were entered, verifies if
-        the account exists, authenticates the pin, sets the current user,
-        and displays the account balance.
+        The method checks that the name and pin were entered, verifies if
+        the account exists, authenticates the pin, sets and welcomes the
+        current user, and displays the account balance.
         """
         name = self.input_name.text().strip()
         pin = self.input_pin.text().strip()
@@ -275,7 +275,7 @@ class Logic(QMainWindow, Ui_MainWindow):
 
     def show_balance(self)->None:
         """
-        This method displays the current balance of the account.
+        This method sets the current balance of the account.
         """
         acc = self.system.get_account(self.current_user)
         self.label_balance.setText(f"Balance: ${acc.get_balance :.2f}")
