@@ -5,7 +5,7 @@ import os
 
 class Accounts:
     """
-    A class that sets the information of one account at a time.
+    A class that sets the information of one account at a time
     """
     def __init__(self, name: str, pin: str, balance: float, acc_type: str)->None:
         """
