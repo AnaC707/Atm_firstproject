@@ -1,1 +1,6 @@
 Name,Type,Transaction,Amount,Balance
+John Lars,Checking,Deposit,12.5,336.37
+John Lars,Checking,Deposit,12.5,348.87
+Jane Liz,Saving,Withdraw,132.5,678.0
+Tom Mendez,Checking,Withdraw,35.88,574.47
+Jane Liz,Saving,Deposit,45.06,723.06
