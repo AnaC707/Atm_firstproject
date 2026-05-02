@@ -139,7 +139,7 @@ class ManageAccount:
             writer.writerow(["Name", "Pin", "Balance", "Type"])
 
             for acc in self.accounts.values():
-                writer.writerow([acc.get_name(), acc.get_pin(), f"${acc.get_balance :.2f}", acc.get_type()])
+                writer.writerow([acc.get_name(), acc.get_pin(), f"${acc.get_balance() :.2f}", acc.get_type()])
 
     def save_record(self, name: str, acc_type: str, transaction: str, amount: float, balance: float)->None:
         """
@@ -199,7 +199,7 @@ class Logic(QMainWindow, Ui_MainWindow):
 
         if self.r_button2.isChecked():
             acc.deposit(amount)
-            self.label_balance.setText(f"Deposited: ${amount:.2f}\nBalance: ${acc.get_balance :.2f}")
+            self.label_balance.setText(f"Deposited: ${amount:.2f}\nBalance: ${acc.get_balance() :.2f}")
             self.system.save_record(acc.get_name(), acc.get_type(), "Deposit", amount, acc.get_balance())
 
         elif self.r_button1.isChecked():
@@ -207,7 +207,7 @@ class Logic(QMainWindow, Ui_MainWindow):
                 QMessageBox.warning(self, "Error", "Insufficient Funds")
                 return
 
-            self.label_balance.setText(f"Withdrawal: ${amount:.2f}\nBalance: ${acc.get_balance :.2f}")
+            self.label_balance.setText(f"Withdrawal: ${amount:.2f}\nBalance: ${acc.get_balance() :.2f}")
             self.system.save_record(acc.get_name(), acc.get_type(), "Withdraw", amount, acc.get_balance())
 
         else:
@@ -278,4 +278,4 @@ class Logic(QMainWindow, Ui_MainWindow):
         This method sets the current balance of the account.
         """
         acc = self.system.get_account(self.current_user)
-        self.label_balance.setText(f"Balance: ${acc.get_balance :.2f}")
+        self.label_balance.setText(f"Balance: ${acc.get_balance() :.2f}")
